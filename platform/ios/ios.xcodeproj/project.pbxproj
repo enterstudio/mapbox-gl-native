@@ -26,6 +26,7 @@
 		16376B3E1FFDB4B40000563E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16376B3C1FFDB4B40000563E /* LaunchScreen.storyboard */; };
 		16376B411FFDB4B40000563E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16376B401FFDB4B40000563E /* main.m */; };
 		16376B471FFDB92B0000563E /* one-liner.json in Resources */ = {isa = PBXBuildFile; fileRef = DA35D0871E1A6309007DED41 /* one-liner.json */; };
+		165D0CE720005419009A3C66 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8847D21CBAF91600AB86E3 /* Mapbox.framework */; };
 		1753ED421E53CE6F00A9FD90 /* MGLConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1753ED411E53CE6F00A9FD90 /* MGLConversion.h */; };
 		1753ED431E53CE6F00A9FD90 /* MGLConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1753ED411E53CE6F00A9FD90 /* MGLConversion.h */; };
 		1F06668A1EC64F8E001C16D7 /* MGLLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F0666881EC64F8E001C16D7 /* MGLLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -502,12 +503,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		16376B0C1FFD9DAF0000563E /* PBXContainerItemProxy */ = {
+		165D0CE520005351009A3C66 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA1DC9421CB6C1C2006E619F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DA1DC9491CB6C1C2006E619F;
-			remoteInfo = iosapp;
+			remoteGlobalIDString = DA8847D11CBAF91600AB86E3;
+			remoteInfo = dynamic;
 		};
 		DA25D5C71CCDA0C100607828 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1037,6 +1038,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				165D0CE720005419009A3C66 /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2032,7 +2034,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				16376B0D1FFD9DAF0000563E /* PBXTargetDependency */,
+				165D0CE620005351009A3C66 /* PBXTargetDependency */,
 			);
 			name = integration;
 			productName = "integration-tests";
@@ -2649,10 +2651,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		16376B0D1FFD9DAF0000563E /* PBXTargetDependency */ = {
+		165D0CE620005351009A3C66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA1DC9491CB6C1C2006E619F /* iosapp */;
-			targetProxy = 16376B0C1FFD9DAF0000563E /* PBXContainerItemProxy */;
+			target = DA8847D11CBAF91600AB86E3 /* dynamic */;
+			targetProxy = 165D0CE520005351009A3C66 /* PBXContainerItemProxy */;
 		};
 		DA25D5C81CCDA0C100607828 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
