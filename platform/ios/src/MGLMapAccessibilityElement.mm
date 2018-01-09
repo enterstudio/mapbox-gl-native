@@ -7,6 +7,7 @@
 #import "MGLVectorSource_Private.h"
 
 #import "NSBundle+MGLAdditions.h"
+#import "NSOrthography+MGLAdditions.h"
 
 @implementation MGLMapAccessibilityElement
 
@@ -49,24 +50,30 @@
         NSString *languageCode = [MGLVectorSource preferredMapboxStreetsLanguage];
         NSString *nameAttribute = [NSString stringWithFormat:@"name_%@", languageCode];
         NSString *name = [feature attributeForKey:nameAttribute];
-        
+
         // If a feature hasn’t been translated into the preferred language, it
         // may be in the local language, which may be written in another script.
-        // Romanize it.
-        NSLocale *locale = [NSLocale localeWithLocaleIdentifier:languageCode];
-        NSOrthography *orthography;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability-new"
-        if ([NSOrthography respondsToSelector:@selector(defaultOrthographyForLanguage:)]) {
-            orthography = [NSOrthography defaultOrthographyForLanguage:locale.localeIdentifier];
+        // Attempt to transform to the script of the preferred language, keeping
+        // the original string if no transform exists or if transformation fails.
+        if (@available(iOS 9.0, *)) {
+            NSStringTransform transform;
+            NSString *dominantScript = [NSOrthography mgl_dominantScriptForMapboxStreetsLanguage:languageCode];
+
+            if ([dominantScript isEqualToString:@"Latn"]) {
+                transform = NSStringTransformToLatin;
+            } else if ([dominantScript isEqualToString:@"Hans"]) {
+                // Transform not available.
+            } else if ([dominantScript isEqualToString:@"Cyrl"]) {
+                transform = NSStringTransformLatinToCyrillic;
+            } else if ([dominantScript isEqualToString:@"Arab"]) {
+                transform = NSStringTransformLatinToArabic;
+            }
+
+            if (transform) {
+                name = [name stringByApplyingTransform:transform reverse:NO];
+            }
         }
-#pragma clang diagnostic pop
-#endif
-        if ([orthography.dominantScript isEqualToString:@"Latn"]) {
-            name = [name stringByApplyingTransform:NSStringTransformToLatin reverse:NO];
-        }
-        
+
         self.accessibilityLabel = name;
     }
     return self;
