@@ -40,6 +40,10 @@ ext {
             supportDesign          : "com.android.support:design:${supportLibVersion}",
             supportRecyclerView    : "com.android.support:recyclerview-v7:${supportLibVersion}",
 
+            // arch components
+            lifecycleRuntime       : "android.arch.lifecycle:runtime:1.0.3",
+            lifecycleProcessor     : "android.arch.lifecycle:compiler:1.0.0",
+
             // square crew
             timber                 : 'com.jakewharton.timber:timber:4.5.1',
             okhttp3                : 'com.squareup.okhttp3:okhttp:3.9.1',
