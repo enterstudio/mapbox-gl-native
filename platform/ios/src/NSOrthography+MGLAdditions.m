@@ -12,17 +12,15 @@
 
     // Manually map Mapbox Streets languages to ISO 15924 script codes.
     NSSet *latinLanguages = [NSSet setWithObjects:@"de", @"en", @"es", @"fr", @"pt", nil];
-    NSSet *hansLanaguages = [NSSet setWithObjects:@"zh", @"zh-Hans", nil];
-    NSSet *cyrillicLanguages = [NSSet setWithObjects:@"ru", nil];
-    NSSet *arabicLanguages = [NSSet setWithObjects:@"ar", nil];
+    NSSet *hansLanguages = [NSSet setWithObjects:@"zh", @"zh-Hans", nil];
 
     if ([latinLanguages containsObject:language]) {
         return @"Latn";
-    } else if ([hansLanaguages containsObject:language]) {
+    } else if ([hansLanguages containsObject:language]) {
         return @"Hans";
-    } else if ([cyrillicLanguages containsObject:language]) {
+    } else if ([language isEqualToString:@"ru"]) {
         return @"Cyrl";
-    } else if ([arabicLanguages containsObject:language]) {
+    } else if ([language isEqualToString:@"ar"]) {
         return @"Arab";
     } else {
         // Code for undetermined script

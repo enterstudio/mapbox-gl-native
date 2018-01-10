@@ -8,6 +8,7 @@
 
 #import "NSBundle+MGLAdditions.h"
 #import "NSOrthography+MGLAdditions.h"
+#import "NSString+MGLAdditions.h"
 
 @implementation MGLMapAccessibilityElement
 
@@ -56,22 +57,8 @@
         // Attempt to transform to the script of the preferred language, keeping
         // the original string if no transform exists or if transformation fails.
         if (@available(iOS 9.0, *)) {
-            NSStringTransform transform;
             NSString *dominantScript = [NSOrthography mgl_dominantScriptForMapboxStreetsLanguage:languageCode];
-
-            if ([dominantScript isEqualToString:@"Latn"]) {
-                transform = NSStringTransformToLatin;
-            } else if ([dominantScript isEqualToString:@"Hans"]) {
-                // Transform not available.
-            } else if ([dominantScript isEqualToString:@"Cyrl"]) {
-                transform = NSStringTransformLatinToCyrillic;
-            } else if ([dominantScript isEqualToString:@"Arab"]) {
-                transform = NSStringTransformLatinToArabic;
-            }
-
-            if (transform) {
-                name = [name stringByApplyingTransform:transform reverse:NO];
-            }
+            name = [name mgl_transliteratedStringWithScript:dominantScript];
         }
 
         self.accessibilityLabel = name;
